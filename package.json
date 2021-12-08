@@ -18,12 +18,6 @@
     "format": "prettier --write \"src/**/*+(.jsx|.js|.css)\"",
     "lint": "eslint --ext .jsx,.js src/"
   },
-  "babel": {
-    "presets": [
-      "@babel/preset-env",
-      "@babel/preset-react"
-    ]
-  },
   "browserslist": {
     "production": [
       ">0.2%",
@@ -45,7 +39,6 @@
     "css-loader": "^6.5.1",
     "eslint": "^8.4.0",
     "eslint-config-prettier": "^8.3.0",
-    "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-react": "^7.27.1",
     "gh-pages": "^3.2.3",
     "html-webpack-plugin": "^5.5.0",

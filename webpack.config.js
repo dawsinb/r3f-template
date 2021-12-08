@@ -2,6 +2,7 @@
 
 const path = require('path');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
+const WorkboxPlugin = require('workbox-webpack-plugin');
 
 module.exports = {
   output: {
@@ -40,5 +41,9 @@ module.exports = {
     new HtmlWebPackPlugin({
       template: './public/index.html',
     }),
+    new WorkboxPlugin.GenerateSW({
+      maximumFileSizeToCacheInBytes: 10000000
+    }),
   ],
+  devtool: "eval-cheap-source-map"
 };

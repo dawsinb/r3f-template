@@ -1,15 +1,15 @@
-/* global navigator process window document */
+/* global navigator window document */
 
-import React, { Suspense } from 'react';
+import { Suspense } from 'react';
 import ReactDOM from 'react-dom';
 import { App } from './App';
 import styled from 'styled-components';
 import './styles.css';
 
 // register service worker
-if ('serviceWorker' in navigator && process.env.NODE_ENV === 'production') {
+if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
-    navigator.serviceWorker.register(`${process.env.PUBLIC_URL}/service-worker.js`);
+    navigator.serviceWorker.register(`/service-worker.js`);
   });
 }
 
