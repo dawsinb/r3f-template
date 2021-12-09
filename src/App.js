@@ -1,5 +1,7 @@
+import { Suspense } from 'react';
 import { Canvas } from '@react-three/fiber';
 import styled from 'styled-components';
+import { LoadScreen } from 'Components/loading/LoadScreen';
 
 const Container = styled('div')`
   width: 100%;
@@ -9,7 +11,9 @@ const Container = styled('div')`
 function App() {
   return (
     <Container>
-      <Canvas dpr={[2, 2]} camera={{ position: [0, 0, 100], far: 200 }}></Canvas>
+      <Suspense fallback={<LoadScreen />}>
+        <Canvas dpr={[2, 2]} camera={{ position: [0, 0, 100], far: 200 }}></Canvas>
+      </Suspense>
     </Container>
   );
 }
