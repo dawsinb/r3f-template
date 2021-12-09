@@ -9,8 +9,8 @@ const Container = styled('div')`
   font-size: 1rem;
 `;
 
-function LoadScreen() {
-  return <Container></Container>;
+function LoadScreen({ progress }) {
+  return <Container>{progress}</Container>;
 }
 
 export { LoadScreen };

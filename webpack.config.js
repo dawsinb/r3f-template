@@ -4,7 +4,7 @@ const path = require('path');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const WorkboxPlugin = require('workbox-webpack-plugin');
 
-module.exports = {
+const config = {
   entry: path.join(__dirname, '/src/index.js'),
   output: {
     path: path.join(__dirname, '/build'),
@@ -46,9 +46,16 @@ module.exports = {
     new HtmlWebPackPlugin({
       template: './public/index.html',
     }),
+  ],
+  devtool: 'eval-source-map'
+};
+
+if (process.env.NODE_ENV === 'production') {
+  config.plugins.push(
     new WorkboxPlugin.GenerateSW({
       maximumFileSizeToCacheInBytes: 10000000
-    }),
-  ],
-  devtool: "eval-cheap-source-map"
-};
+    })
+  )
+}
+
+module.exports = config
