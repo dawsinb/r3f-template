@@ -2,6 +2,7 @@
   "name": "react-load-testing",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://ninefour.dawsin.dev",
   "dependencies": {
     "@react-three/drei": "^7.25.4",
     "@react-three/fiber": "^7.0.21",
@@ -10,11 +11,16 @@
     "styled-components": "^5.3.3",
     "three": "^0.135.0",
     "workbox-core": "^6.4.2",
-    "workbox-precaching": "^6.4.2"
+    "zustand": "^3.6.7"
   },
   "scripts": {
-    "start": "webpack-dev-server --mode=development --open --hot",
+    "start": "webpack-dev-server --mode=development --hot",
+    "prestart": "npm run assetMap",
     "build": "webpack --mode=production",
+    "prebuild": "npm run assetMap",
+    "assetMap": "node generateAssetMap.js images models",
+    "deploy": "gh-pages -d build",
+    "predeploy": "npm run build",
     "format": "prettier --write \"src/**/*+(.jsx|.js|.css)\"",
     "lint": "eslint --ext .jsx,.js src/"
   },
@@ -35,6 +41,7 @@
     "@babel/eslint-parser": "^7.16.3",
     "@babel/preset-env": "^7.16.4",
     "@babel/preset-react": "^7.16.0",
+    "@svgr/webpack": "^6.1.2",
     "babel-loader": "^8.2.3",
     "css-loader": "^6.5.1",
     "eslint": "^8.4.0",
@@ -47,6 +54,7 @@
     "webpack": "^5.65.0",
     "webpack-cli": "^4.9.1",
     "webpack-dev-server": "^4.6.0",
+    "workbox-precaching": "^6.4.2",
     "workbox-webpack-plugin": "^6.4.2"
   }
 }

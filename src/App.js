@@ -1,7 +1,8 @@
-import { Suspense } from 'react';
+import { Suspense, useEffect } from 'react';
 import { Canvas } from '@react-three/fiber';
 import styled from 'styled-components';
-import { LoadScreen } from 'Components/loading/LoadScreen';
+import useStore from 'Utils/store';
+import Test from 'Components/Test';
 
 const AppContainer = styled('div')`
   width: 100vw;
@@ -14,16 +15,24 @@ const CanvasContainer = styled('div')`
 `;
 
 function App() {
+  // switch to vertical layout if height > width
+  useEffect(() => {
+    window.addEventListener('resize', () => {
+      useStore.setState({ isVertical: window.innerHeight > window.innerWidth });
+    });
+  }, []);
+
   return (
     <AppContainer>
-      <LoadScreen progress={100} />
-      <Suspense fallback={<LoadScreen progress={100} />}>
+      <Suspense fallback={null}>
         <CanvasContainer>
-          <Canvas dpr={[2, 2]} camera={{ position: [0, 0, 100], far: 200 }} />
+          <Canvas dpr={[2, 2]} camera={{ position: [0, 0, 100], far: 200 }}>
+            <Test />
+          </Canvas>
         </CanvasContainer>
       </Suspense>
     </AppContainer>
   );
 }
 
-export { App };
+export default App;

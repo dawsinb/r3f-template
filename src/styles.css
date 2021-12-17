@@ -11,3 +11,15 @@ body {
 ::-webkit-scrollbar {
   display: none;
 }
+
+@font-face {
+  font-family: 'Sen';
+  src: local('Sen'), url('./fonts/Sen-Regular.ttf') format('truetype');
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: 'Sen';
+  src: local('Sen'), url('./fonts/Sen-ExtraBold.ttf') format('truetype');
+  font-weight: bold;
+}

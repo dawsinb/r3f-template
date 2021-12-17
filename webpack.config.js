@@ -2,7 +2,7 @@
 
 const path = require('path');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
-const WorkboxPlugin = require('workbox-webpack-plugin');
+const { GenerateSW } = require('workbox-webpack-plugin');
 
 const config = {
   entry: path.join(__dirname, '/src/index.js'),
@@ -18,7 +18,7 @@ const config = {
       Fonts: path.join(__dirname, '/src/fonts/'),
       Utils: path.join(__dirname, '/src/utils/')
     },
-    extensions: ['.js', '.jsx']
+    extensions: ['.js', '.jsx', '.svg']
   },
   module: {
     rules: [
@@ -40,6 +40,10 @@ const config = {
           },
         ],
       },
+      {
+        test: /\.svg$/,
+        use: ['@svgr/webpack'],
+      },
     ],
   },
   plugins: [
@@ -52,7 +56,7 @@ const config = {
 
 if (process.env.NODE_ENV === 'production') {
   config.plugins.push(
-    new WorkboxPlugin.GenerateSW({
+    new GenerateSW({
       maximumFileSizeToCacheInBytes: 10000000
     })
   )

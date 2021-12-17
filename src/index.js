@@ -1,14 +1,24 @@
 import ReactDOM from 'react-dom';
-import { App } from './App';
+import { DefaultLoadingManager } from 'three';
+import App from './App';
 import './styles.css';
 
 // register service worker
 if ('serviceWorker' in navigator && process.env.NODE_ENV === 'production') {
-  console.log('test');
   window.addEventListener('load', () => {
     navigator.serviceWorker.register(`/service-worker.js`);
   });
 }
+
+// get url on load start
+let currentUrl = null;
+DefaultLoadingManager.onStart = (url) => {
+  currentUrl = url;
+};
+// send load event on load to progress loading animation
+DefaultLoadingManager.onLoad = () => {
+  dispatchEvent(new CustomEvent('threeLoad', { detail: currentUrl }));
+};
 
 // render the app
 ReactDOM.render(<App />, document.getElementById('root'));
