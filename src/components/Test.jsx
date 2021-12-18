@@ -11,7 +11,7 @@ function Test() {
     const time = clock.getElapsedTime();
 
     boxRef.current.rotation.y = time;
-  })
+  });
 
   return (
     <mesh ref={boxRef}>
