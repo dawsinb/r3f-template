@@ -26,7 +26,7 @@ function App() {
     <AppContainer>
       <Suspense fallback={null}>
         <CanvasContainer>
-          <Canvas dpr={[2, 2]} camera={{ position: [0, 0, 100], far: 200 }}>
+          <Canvas linear dpr={[2, 2]} camera={{ position: [0, 0, 100], far: 200 }}>
             <Test />
           </Canvas>
         </CanvasContainer>
