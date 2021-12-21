@@ -1,21 +1,36 @@
 import create from 'zustand';
+import { subscribeWithSelector } from 'zustand/middleware';
+import { clamp } from 'Utils/math';
+
+/* store slices */
 
 const scrollSlice = (set, get) => ({
-  sections: [],
-  breakpoints: [],
-  numSections: 8,
   scrollPosition: 0,
+  minScroll: 0,
   maxScroll: 0,
   applyScrollDelta: (delta) => {
     set({
-      scrollPosition: Math.min(Math.max(get().scrollPosition + delta, 0), get().maxScroll)
+      scrollPosition: clamp(get().scrollPosition + delta, get().minScroll, get().maxScroll)
+    });
+  },
+  snapScrollPosition: () => {
+    set({
+      scrollPosition: clamp(Math.round(get().scrollPosition), get().minScroll, get().maxScroll)
     });
   }
 });
 
-const useStore = create((set, get) => ({
-  isVertical: false,
-  ...scrollSlice(set, get)
-}));
+const layoutSlice = () => ({
+  isVertical: false
+});
+
+/* combine slices into store */
+
+const useStore = create(
+  subscribeWithSelector((set, get) => ({
+    ...layoutSlice(),
+    ...scrollSlice(set, get)
+  }))
+);
 
 export default useStore;

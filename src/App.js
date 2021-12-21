@@ -2,6 +2,7 @@ import { Suspense, useEffect } from 'react';
 import { Canvas } from '@react-three/fiber';
 import styled from 'styled-components';
 import useStore from 'Utils/store';
+import ScrollHandler from 'Components/scroll/ScrollHandler';
 import Test from 'Components/Test';
 
 const AppContainer = styled('div')`
@@ -31,6 +32,8 @@ function App() {
           </Canvas>
         </CanvasContainer>
       </Suspense>
+
+      <ScrollHandler />
     </AppContainer>
   );
 }
