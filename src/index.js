@@ -17,7 +17,7 @@ DefaultLoadingManager.onStart = (url) => {
 };
 // send load event on load to progress loading animation
 DefaultLoadingManager.onLoad = () => {
-  dispatchEvent(new CustomEvent('threeLoad', { detail: currentUrl }));
+  dispatchEvent(new CustomEvent('assetLoad', { detail: currentUrl }));
 };
 
 // render the app

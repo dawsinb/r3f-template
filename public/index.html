@@ -49,7 +49,7 @@
       let assetsLoaded = 0;
       let bytesLoaded = 0;
       // executes when asset is finished loading
-      window.addEventListener('threeLoad', function(event) {
+      window.addEventListener('assetLoad', function(event) {
         // increment trackers
         assetsLoaded = assetsLoaded + 1;
         bytesLoaded += assetMap[event.detail];
