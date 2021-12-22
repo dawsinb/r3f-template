@@ -5,7 +5,7 @@ import { useRef } from 'react';
 function Test() {
   const boxRef = useRef();
 
-  const texture = useTexture('/images/test.jpg');
+  const texture = useTexture('/assets/images/test.jpg');
 
   useFrame(({ clock }) => {
     const time = clock.getElapsedTime();

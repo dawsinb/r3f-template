@@ -6,13 +6,14 @@
     <link rel="manifest" href="/manifest.webmanifest">
     <link rel="icon" type="image/svg+xml" href="/icons/icon.svg">
     <link rel='apple-touch-icon' href='/icons/icon-192.svg'>
-    <link rel="stylesheet" href="loadScreen.css">
+    <link rel="stylesheet" href="styles.css">
     <title>nine four</title>
   </head>
   <body>
     <noscript>
       you need to enable javascript to run this app
     </noscript>
+    <script defer="defer" src="/bundle.js"></script>
 
     <div id="loadScreen">
         <div id="progressContainer"> 
@@ -28,12 +29,17 @@
           <div id="progressFill"></div>
         </div>
         <div id="progressText">
-          loading
+          initializing
         </div>
       </div>
     </div>
     
     <script type="module">
+      // change text from initializing to loading after bundle is downloaded
+      window.addEventListener('load', function() {
+        document.getElementById('progressText').innerHTML = 'loading';
+      });
+
       // load asset map
       const assetMap = await fetch('/assetMap.json').then(response => response.json());
 

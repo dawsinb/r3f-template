@@ -1,14 +1,14 @@
 /* eslint-disable */
 
 const path = require('path');
-const HtmlWebPackPlugin = require('html-webpack-plugin');
+const CopyPlugin = require("copy-webpack-plugin");
 const { GenerateSW } = require('workbox-webpack-plugin');
 
 const config = {
   entry: path.join(__dirname, '/src/index.js'),
   output: {
     path: path.join(__dirname, '/build'),
-    filename: 'bundle.js',
+    filename: 'bundle.js'
   },
   resolve: {
     modules: [path.join(__dirname, '/src'), 'node_modules'],
@@ -47,8 +47,12 @@ const config = {
     ],
   },
   plugins: [
-    new HtmlWebPackPlugin({
-      template: './public/index.html',
+    new CopyPlugin({
+      patterns: [
+        {
+          from: 'public'
+        }
+      ]
     }),
   ],
   devtool: 'eval-source-map'
@@ -57,7 +61,7 @@ const config = {
 if (process.env.NODE_ENV === 'production') {
   config.plugins.push(
     new GenerateSW({
-      maximumFileSizeToCacheInBytes: 10000000
+      maximumFileSizeToCacheInBytes: 4 * 1024 * 1024
     })
   )
 }
