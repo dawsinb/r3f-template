@@ -1,7 +1,7 @@
 {
   "name": "nine-four",
   "version": "0.0.0",
-  "homepage": "https://SUBDOMAIN.dawsin.dev",
+  "homepage": "https://test.dawsin.dev",
   "private": true,
   "dependencies": {
     "@react-three/drei": "^7.25.4",
@@ -19,7 +19,7 @@
     "build": "webpack --mode=production",
     "prebuild": "npm run assetMap",
     "assetMap": "node generateAssetMap.js assets",
-    "deploy": "gh-pages -d build",
+    "deploy": "echo 'test.dawsin.dev' > ./build/CNAME && gh-pages -d build",
     "predeploy": "npm run build",
     "format": "prettier --write \"src/**/*+(.jsx|.js|.css)\"",
     "lint": "eslint --ext .jsx,.js src/"
