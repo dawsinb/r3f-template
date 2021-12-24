@@ -19,6 +19,7 @@ const config = {
       Utils: path.join(__dirname, '/src/utils/')
     },
     extensions: ['.js', '.jsx', '.svg']
+    
   },
   module: {
     rules: [
@@ -55,6 +56,9 @@ const config = {
       ]
     }),
   ],
+  performance: {
+    hints: false,
+  },
   devtool: 'eval-source-map'
 };
 
